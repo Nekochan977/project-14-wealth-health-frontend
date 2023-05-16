@@ -1,4 +1,8 @@
-# Getting Started with Create React App
+# HRnet
+This is the 14th and last project in theJavaScript React Application Developer Openclassrooms curriculum  
+
+## Figma
+https://www.figma.com/file/MTjB2MGrFFCGSU7sM1Li63/Wealth-Health?type=design&t=2XbGLvMyTB8Wxmxe-1
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
