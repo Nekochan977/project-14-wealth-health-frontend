@@ -3,7 +3,9 @@ import Logo from "../../assets/Logo.png"
 const Header = () => {
     return(
         <header>
-            <img className="logo" src={Logo} alt="HRnet logo"/>
+            <h1>
+                <img className="logo" src={Logo} alt="HRnet logo"/>
+            </h1>
         </header>
     )
 }
