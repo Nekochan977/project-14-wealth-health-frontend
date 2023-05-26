@@ -1,32 +1,30 @@
-import './App.css';
-import Header from "./components/header/Header";
-import Button from "./components/button/Button";
-import {useState} from "react";
-import NewEmployee from "./components/modal/NewEmployee";
+import './App.css'
+import Header from "./components/header/Header"
+import Button from "./components/button/Button"
+import {useState} from "react"
+import NewEmployee from "./components/modal/NewEmployee"
 
 
 function App() {
-    const [isShown, setIsShown] = useState(true)
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isShown, setIsShown] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
 
-    function toggle() {
-        setIsOpen((isOpen) => !isOpen);
-        // setIsShown((isShown) => !isShown)
+    function open() {
+        setIsOpen((isOpen) => true)
     }
-
-
 
   return (
       <div className="App">
           <Header/>
           <main className="main-container">
-              {isShown &&
+              {isOpen === true ?
+                  <NewEmployee/>
+                  :
                   <div className="button-container">
-                      <Button text={"Create new employee"} click={toggle}/>
-                      <Button text={"View current employees"}/>
+                      <Button className={"button"} text={"Create new employee"} click={open}/>
+                      <Button className={"button"} text={"View current employees"}/>
                   </div>
               }
-              {isOpen && <NewEmployee/>}
           </main>
       </div>
   );
