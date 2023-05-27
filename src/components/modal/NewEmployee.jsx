@@ -2,18 +2,26 @@ import "./NewEmployee.css"
 import {states} from "../../utils/stateList";
 import {useState} from "react";
 import Button from "../button/Button";
+import Calendar from "../calendar/Calendar";
 
 // console.log(states)
 
 const NewEmployee = () => {
     const [state, setState] = useState("Alabama")
     const [isClosed, setIsClosed] = useState(false)
+    const [openCalendar, setOpenCalendar] = useState(false)
+
+    const [currentDate, setCurrentDate] = useState(new Date("2022-02-01"))
 
     function close() {
         setIsClosed((isClosed)=>true)
     }
     const handleChange = (event) => {
         setState(event.target.value)
+    }
+
+    const showCalendar = () => {
+        setOpenCalendar((openCalendar)=> true)
     }
     return(
         <section className={"form-container"}>
@@ -30,10 +38,16 @@ const NewEmployee = () => {
                         <input name={"last-name"} id={"last-name"} type={"text"}/>
                     </div>
                 </div>
+                {/*Test on Calendar*/}
                 <div className={"row"}>
                     <div className={"input-container"}>
                         <label>Date of Birth</label>
-                        <input name={"birth-date"} id={"birth-date"} type={"text"}/>
+                        {openCalendar === true ?
+                            <Calendar value={currentDate} onChange={setCurrentDate} className={"calendar-container"} />
+                            :
+                            <input name={"birth-date"} id={"birth-date"} type={"text"} onInput={showCalendar}/>
+                        }
+
                     </div>
                     <div className={"input-container"}>
                         <label>Social Security Number</label>
@@ -96,8 +110,9 @@ const NewEmployee = () => {
                         </select>
                     </div>
                 </div>
+                <Button text={"Save"}/>
             </form>
-            <Button text={"Save"}/>
+
         </section>
     )
 }
