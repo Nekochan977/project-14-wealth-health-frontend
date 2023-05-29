@@ -1,8 +1,8 @@
 
 
-const Cell = ({children, className}) => {
+const Cell = ({children, className, onClick}) => {
     return (
-        <div className={className}>{children}</div>
+        <div className={className} onClick={onClick}>{children}</div>
     )
 }
 
