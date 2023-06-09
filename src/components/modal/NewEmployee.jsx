@@ -3,6 +3,7 @@ import {states} from "../../utils/stateList";
 import {useState} from "react";
 import Button from "../button/Button";
 import Calendar from "../calendar/Calendar";
+import {format} from "date-fns";
 
 // console.log(states)
 
@@ -10,7 +11,7 @@ const NewEmployee = () => {
     const [state, setState] = useState("Alabama")
     const [openCalendar, setOpenCalendar] = useState(false)
 
-    const [currentDate, setCurrentDate] = useState(new Date("2022-02-01"))
+    const [currentDate, setCurrentDate] = useState(new Date())
 
     const handleChange = (event) => {
         setState(event.target.value)
@@ -21,6 +22,9 @@ const NewEmployee = () => {
     }
     return(
         <form className={"form"}>
+            <div>
+                <p>Selected Date: {format(currentDate, "P")}</p>
+            </div>
             <div className={"row"}>
                 <div className={"input-container"}>
                     <label>First Name</label>
