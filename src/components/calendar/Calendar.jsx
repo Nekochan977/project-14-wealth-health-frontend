@@ -4,13 +4,14 @@ import {useState} from "react";
 
 const weekDays = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun" ]
 
-export const getDateValue = (e, value) => {
+export const getDateValue = (e, value = new Date()) => {
     const date = setDate(value, e.target.innerHTML)
     const formatedDate = format(date, "P")
     console.log(formatedDate)
 }
 
 const Calendar = ({className, value = new Date(), onChange}) => {
+
     const startDate = startOfMonth(value)
     const endDate = endOfMonth(value)
     const numDays = differenceInDays(endDate, startDate) +1
