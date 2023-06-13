@@ -1,8 +1,9 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./pages/Home";
-import {HOME} from "./Routes";
+import {EMPLOYEES, HOME} from "./Routes";
 import Layout from "./components/layout/Layout";
+import Employees from "./pages/Employees";
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
               <Routes>
                   <Route path={HOME} element={<Layout/>}>
                       <Route index element={<Home />} />
+                      <Route path={EMPLOYEES} element={<Employees/>}/>
                   </Route>
               </Routes>
           </Router>
