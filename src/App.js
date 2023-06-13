@@ -1,5 +1,8 @@
 import './App.css'
-import Header from "./components/header/Header"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Home from "./pages/Home";
+import {HOME} from "./Routes";
+import Layout from "./components/layout/Layout";
 
 
 function App() {
@@ -7,7 +10,13 @@ function App() {
 
   return (
       <div className="App">
-          <Header/>
+          <Router>
+              <Routes>
+                  <Route path={HOME} element={<Layout/>}>
+                      <Route index element={<Home />} />
+                  </Route>
+              </Routes>
+          </Router>
       </div>
   );
 }
