@@ -1,14 +1,16 @@
 import Cell from "./Cell";
 import {add, differenceInDays, endOfMonth, format, setDate, startOfMonth, sub} from "date-fns";
 import {useState} from "react";
+import {number} from "prop-types";
 
 const weekDays = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun" ]
 
-export const getDateValue = (e, value = new Date()) => {
-    const date = setDate(value, e.target.innerHTML)
-    const formatedDate = format(date, "P")
-    console.log(formatedDate)
-}
+// export const getDateValue = (e, value = new Date()) => {
+//     const date = setDate(value, e.target.innerHTML)
+//     const formatedDate = format(date, "P")
+//     console.log(formatedDate)
+// }
+
 
 const Calendar = ({className, value = new Date(), onChange}) => {
 
@@ -24,7 +26,16 @@ const Calendar = ({className, value = new Date(), onChange}) => {
     const prevYear = () => onChange(sub(value, {years: 1}))
     const nextYear = () => onChange(add(value, {years: 1}))
 
+    const handleClickDate = ( index) => {
+        const date = setDate(value, index)
+        onChange && onChange(date)
+        console.log(value)
+        console.log(index)
+        console.log(date)
+    }
+
     return(
+
         <div className={className}>
             <div className={"grid grid-cols-7 items-center justify-center text-center"}>
                 <Cell className={"top-cell"} onClick={prevYear}>{"<<"}</Cell>
@@ -42,8 +53,9 @@ const Calendar = ({className, value = new Date(), onChange}) => {
                 })}
 
                 {Array.from({length : numDays}).map((_, index) =>{
+
                     const date = index +1
-                    return(<Cell key={date} className={"hover:bg-gray-100 active:bg-violet-400 "} onClick={getDateValue}>{date}</Cell>)
+                    return(<Cell key={date} className={"hover:bg-gray-100 active:bg-violet-400 "} onClick={()=> handleClickDate(date, index+1)}>{date}</Cell>)
                 })}
 
                 {Array.from({length: suffixDays}).map((_, index)  => {
