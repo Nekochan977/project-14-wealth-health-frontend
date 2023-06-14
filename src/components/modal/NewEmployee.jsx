@@ -9,22 +9,18 @@ import {format} from "date-fns";
 
 const NewEmployee = () => {
     const [state, setState] = useState("Alabama")
-    const [openCalendar, setOpenCalendar] = useState(false)
 
-    const [currentDate, setCurrentDate] = useState(new Date())
 
     const handleChange = (event) => {
         setState(event.target.value)
     }
 
-    const showCalendar = () => {
-        setOpenCalendar((openCalendar)=> true)
-    }
+
     return(
         <form className={"form"}>
-            <div>
-                <p>Selected Date: {format(currentDate, "P")}</p>
-            </div>
+            {/*<div>*/}
+            {/*    <p>Selected Date: {format(currentDate, "P")}</p>*/}
+            {/*</div>*/}
             <div className={"row"}>
                 <div className={"input-container"}>
                     <label>First Name</label>
@@ -39,11 +35,7 @@ const NewEmployee = () => {
             <div className={"row"}>
                 <div className={"input-container"}>
                     <label>Date of Birth</label>
-                    {openCalendar === true ?
-                        <Calendar value={currentDate} onChange={setCurrentDate} className={"calendar-container"} />
-                        :
-                        <input name={"birth-date"} id={"birth-date"} type={"text"} onInput={showCalendar}/>
-                    }
+                    <Calendar className={"calendar-container"} />
 
                 </div>
                 <div className={"input-container"}>
