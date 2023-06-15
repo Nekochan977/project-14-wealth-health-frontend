@@ -1,7 +1,7 @@
 import Cell from "./Cell";
 import {add, differenceInDays, endOfMonth, format, setDate, startOfMonth, sub} from "date-fns";
 import {useState} from "react";
-import {number} from "prop-types";
+import "./Calendar.css"
 
 const weekDays = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun" ]
 
@@ -71,7 +71,7 @@ const Calendar = ({className, value = new Date(), onChange}) => {
             </div>
             :
             <div>
-                <p onClick={showCalendar}>{format(currentDate, "P")}</p>
+                <p className={"calendar-input"} onClick={showCalendar}>{format(currentDate, "P")}</p>
             </div>
         }
         </div>
