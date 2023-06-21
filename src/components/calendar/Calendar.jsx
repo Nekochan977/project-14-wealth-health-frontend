@@ -6,35 +6,28 @@ import "./Calendar.css"
 const weekDays = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun" ]
 
 
-
-
-const Calendar = ({className, value = new Date(), onChange}) => {
+const Calendar = ({className}) => {
     const [openCalendar, setOpenCalendar] = useState(false)
-
     const [currentDate, setCurrentDate] = useState(new Date())
 
     const showCalendar = () => {
         setOpenCalendar((openCalendar)=> true)
     }
 
-    const startDate = startOfMonth(value)
-    const endDate = endOfMonth(value)
+    const startDate = startOfMonth(currentDate)
+    const endDate = endOfMonth(currentDate)
     const numDays = differenceInDays(endDate, startDate) +1
 
     const prefixDays = startDate.getDay() -1
     const suffixDays = 7 - endDate.getDay()
 
-    const prevMonth = () => onChange(sub(value, {months: 1}))
-    const nextMonth = () => onChange(add(value, {months: 1}))
-    const prevYear = () => onChange(sub(value, {years: 1}))
-    const nextYear = () => onChange(add(value, {years: 1}))
+    const prevMonth = () => setCurrentDate(sub(currentDate, {months: 1}))
+    const nextMonth = () => setCurrentDate(add(currentDate, {months: 1}))
+    const prevYear = () => setCurrentDate(sub(currentDate, {years: 1}))
+    const nextYear = () => setCurrentDate(add(currentDate, {years: 1}))
 
     const handleClickDate = ( index) => {
-        const date = setDate(value, index)
-        onChange && onChange(date)
-        console.log(value)
-        console.log(index)
-        console.log(date)
+        const date = setDate(currentDate, index)
         setCurrentDate(date)
         setOpenCalendar(false)
     }
@@ -46,7 +39,7 @@ const Calendar = ({className, value = new Date(), onChange}) => {
                 <div className={"grid grid-cols-7 items-center justify-center text-center"}>
                     <Cell className={"top-cell"} onClick={prevYear}>{"<<"}</Cell>
                     <Cell className={"top-cell"} onClick={prevMonth}>{"<"}</Cell>
-                    <Cell className={"top-cell col-span-3"}>{format(value, "LLLL yyyy")}</Cell>
+                    <Cell className={"top-cell col-span-3"}>{format(currentDate, "LLLL yyyy")}</Cell>
                     <Cell className={"top-cell"} onClick={nextMonth}>{">"}</Cell>
                     <Cell className={"top-cell"} onClick={nextYear}>{">>"}</Cell>
 
@@ -71,7 +64,7 @@ const Calendar = ({className, value = new Date(), onChange}) => {
             </div>
             :
             <div>
-                <p className={"calendar-input"} onClick={showCalendar}>{format(currentDate, "P")}</p>
+                <p className={"calendar-input"} onClick={showCalendar}>{format(currentDate, "PPP")}</p>
             </div>
         }
         </div>
