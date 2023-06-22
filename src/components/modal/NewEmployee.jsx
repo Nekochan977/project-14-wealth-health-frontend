@@ -3,9 +3,7 @@ import {states} from "../../utils/stateList";
 import {useState} from "react";
 import Button from "../button/Button";
 import Calendar from "../calendar/Calendar";
-import {format} from "date-fns";
 
-// console.log(states)
 
 const NewEmployee = () => {
     const [state, setState] = useState("Alabama")
@@ -18,9 +16,6 @@ const NewEmployee = () => {
 
     return(
         <form className={"form"}>
-            {/*<div>*/}
-            {/*    <p>Selected Date: {format(currentDate, "P")}</p>*/}
-            {/*</div>*/}
             <div className={"row"}>
                 <div className={"input-container"}>
                     <label>First Name</label>
@@ -34,9 +29,7 @@ const NewEmployee = () => {
             {/*Test on Calendar*/}
             <div className={"row"}>
                 <div className={"input-container"}>
-                    <label>Date of Birth</label>
-                    <Calendar className={"calendar-container"} />
-
+                    <Calendar text={"Date of Birth"} className={"color"}/>
                 </div>
                 <div className={"input-container"}>
                     <label>Social Security Number</label>
@@ -45,8 +38,7 @@ const NewEmployee = () => {
             </div>
             <div className={"row"}>
                 <div className={"input-container"}>
-                    <label>Start Date</label>
-                    <input name={"start-date"} id={"start-date"} type={"text"}/>
+                    <Calendar text={"Start Date"} className={"color"} />
                 </div>
                 <div className={"input-container"}>
                     <label>Contract Type</label>

@@ -1,12 +1,12 @@
-import Cell from "./Cell";
-import {add, differenceInDays, endOfMonth, format, setDate, startOfMonth, sub} from "date-fns";
-import {useState} from "react";
+import Cell from "./Cell"
+import {add, differenceInDays, endOfMonth, format, setDate, startOfMonth, sub} from "date-fns"
+import {useState} from "react"
 import "./Calendar.css"
 
 const weekDays = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun" ]
 
 
-const Calendar = ({className}) => {
+const Calendar = ({className, text}) => {
     const [openCalendar, setOpenCalendar] = useState(false)
     const [currentDate, setCurrentDate] = useState(new Date())
 
@@ -34,42 +34,43 @@ const Calendar = ({className}) => {
 
     return(
         <div>
-        {openCalendar === true ?
-            <div className={className}>
-                <div className={"grid grid-cols-7 items-center justify-center text-center"}>
-                    <Cell className={"top-cell"} onClick={prevYear}>{"<<"}</Cell>
-                    <Cell className={"top-cell"} onClick={prevMonth}>{"<"}</Cell>
-                    <Cell className={"top-cell col-span-3"}>{format(currentDate, "LLLL yyyy")}</Cell>
-                    <Cell className={"top-cell"} onClick={nextMonth}>{">"}</Cell>
-                    <Cell className={"top-cell"} onClick={nextYear}>{">>"}</Cell>
+            <div className={"calendar-block"}>
+                <label>{text}</label>
+                <input className={"calendar-input"} onClick={showCalendar} onChange={()=>{}} value={format(currentDate, "PPP")}/>
+            </div>
+            {openCalendar === true ?
+                <div className={className}>
+                    <div className={"calendar-container"}>
+                        <div className={"grid grid-cols-7 items-center justify-center text-center"}>
+                            <Cell className={"cell top-cell"} onClick={prevYear}>{"<<"}</Cell>
+                            <Cell className={"cell top-cell"} onClick={prevMonth}>{"<"}</Cell>
+                            <Cell className={"cell top-cell col-span-3"}>{format(currentDate, "LLLL yyyy")}</Cell>
+                            <Cell className={"cell top-cell"} onClick={nextMonth}>{">"}</Cell>
+                            <Cell className={"cell top-cell"} onClick={nextYear}>{">>"}</Cell>
 
-                    {weekDays.map((day) => (
-                        <Cell key={day} className={"day-cell"}>{day}</Cell>
-                    ))}
+                            {weekDays.map((day) => (
+                                <Cell key={day} className={"cell day-cell"}>{day}</Cell>
+                            ))}
 
-                    {Array.from({length: prefixDays}).map((_, index)  => {
-                        return( <Cell key={index}/>)
-                    })}
+                            {Array.from({length: prefixDays}).map((_, index)  => {
+                                return( <Cell key={index} className={"cell"}/>)
+                            })}
 
-                    {Array.from({length : numDays}).map((_, index) =>{
+                            {Array.from({length : numDays}).map((_, index) =>{
+                                const date = index +1
+                                return(<Cell key={date} className={"cell hover:bg-gray-100 active:bg-violet-400 "} onClick={()=> handleClickDate(date, index+1)}>{date}</Cell>)
+                            })}
 
-                        const date = index +1
-                        return(<Cell key={date} className={"hover:bg-gray-100 active:bg-violet-400 "} onClick={()=> handleClickDate(date, index+1)}>{date}</Cell>)
-                    })}
-
-                    {Array.from({length: suffixDays}).map((_, index)  => {
-                        return( <Cell key={index}/>)
-                    })}
+                            {Array.from({length: suffixDays}).map((_, index)  => {
+                                return( <Cell key={index} className={"cell"}/>)
+                            })}
+                        </div>
+                    </div>
                 </div>
-            </div>
-            :
-            <div>
-                <p className={"calendar-input"} onClick={showCalendar}>{format(currentDate, "PPP")}</p>
-            </div>
-        }
+                :
+                ""
+            }
         </div>
-
-
     )
 }
 

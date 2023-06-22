@@ -81,22 +81,7 @@ input, select {
     position: relative;
     width: fit-content;
 }
-
-
-.calendar-container {
-    width: 30rem;
-    border-top: 1px solid rgba(37, 3, 244, 0.25);
-    border-left: 1px solid rgba(37, 3, 244, 0.25);
-}
-.top-cell {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.5rem;
-    border-bottom: 1px solid rgba(37, 3, 244, 0.25);
-    border-right: 1px solid rgba(37, 3, 244, 0.25);
-}
-.day-cell {
-    border-right: 1px solid rgba(37, 3, 244, 0.25);
-    border-bottom: 1px solid rgba(37, 3, 244, 0.25);
+.color {
+    font-family: 'Kodchasan', 'Roboto', sans-serif;
+    color: rgba(37, 3, 244, 0.85);
 }
