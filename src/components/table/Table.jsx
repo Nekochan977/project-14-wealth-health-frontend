@@ -1,6 +1,7 @@
 import {DataTable} from "primereact/datatable";
 import { Column } from 'primereact/column';
-import {useEffect, useState} from "react";
+import { Button } from 'primereact/button';
+import {Fragment, useEffect, useState} from "react";
 import {EmployeesData} from "./service/EmployeesData";
 import {InputText} from "primereact/inputtext";
 
@@ -8,13 +9,32 @@ import {InputText} from "primereact/inputtext";
 const Table = () => {
     // react Hook For State Handler
     const [employees, setEmployees] = useState([]);
+    const [globalFilter, setGlobalFilter] = useState(null);
+    const [employeesDialog, setEmployeesDialog] = useState(false);
+    const [deleteEmployeesDialog, setDeleteEmployeesDialog] = useState(false);
 
     useEffect(() => {
         EmployeesData.getData().then(data => setEmployees(data))
     },[])
 
-    // console.log(employees)
-    const [globalFilter, setGlobalFilter] = useState(null);
+    const editEmployees = (employees) => {
+        setEmployees({ ...employees });
+        setEmployeesDialog(true);
+    };
+
+    const confirmDeleteEmployees = (employees) => {
+        setEmployees(employees);
+        setDeleteEmployeesDialog(true);
+    };
+
+    const actionBodyTemplate = (rowData) => {
+        return (
+            <Fragment>
+                <Button icon="pi pi-pencil" rounded outlined className="mr-2" onClick={() => editEmployees(rowData)} />
+                <Button icon="pi pi-trash" rounded outlined severity="danger" onClick={() => confirmDeleteEmployees(rowData)} />
+            </Fragment>
+        );
+    };
 
     const header = (
         <div className="flex flex-wrap gap-2 align-items-center justify-content-between">
@@ -45,6 +65,7 @@ const Table = () => {
                 <Column field="firstName" header="First Name" sortable style={{ width: '20%' }}></Column>
                 <Column field="lastName" header="Last Name" sortable style={{ width: '20%' }}></Column>
                 <Column field="address" header="Address" sortable style={{ width: '20%' }}></Column>
+                <Column body={actionBodyTemplate} exportable={false} style={{ minWidth: '5rem' }}></Column>
             </DataTable>
         </div>
     )
