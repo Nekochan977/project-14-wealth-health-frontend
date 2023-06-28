@@ -1,6 +1,6 @@
 import Modal from "../components/modal/Modal";
 import Button from "../components/button/Button";
-import NewEmployee from "../components/modal/NewEmployee";
+import NewEmployee from "../components/form/NewEmployee";
 import {useState} from "react";
 import {Link} from "react-router-dom";
 import {EMPLOYEES} from "../Routes";
