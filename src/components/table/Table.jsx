@@ -4,18 +4,29 @@ import { Button } from 'primereact/button';
 import {Fragment, useEffect, useState} from "react";
 import {EmployeesData} from "./service/EmployeesData";
 import {InputText} from "primereact/inputtext";
+import {useSelector} from "react-redux";
+
+// test redux
+import {selectAllEmployees} from "../../redux/employeeSlice";
 
 
 const Table = () => {
     // react Hook For State Handler
+    const employeesList = useSelector(selectAllEmployees)
+    // console.log(employeesList)
+
+
+
     const [employees, setEmployees] = useState([]);
     const [globalFilter, setGlobalFilter] = useState(null);
     const [employeesDialog, setEmployeesDialog] = useState(false);
     const [deleteEmployeesDialog, setDeleteEmployeesDialog] = useState(false);
 
-    useEffect(() => {
-        EmployeesData.getData().then(data => setEmployees(data))
-    },[])
+    // useEffect(() => {
+    //     EmployeesData.getData().then(data => setEmployees(data))
+    // },[])
+
+    // console.log(employees)
 
     const editEmployees = (employees) => {
         setEmployees({ ...employees });
@@ -51,7 +62,8 @@ const Table = () => {
     return(
         <div className={"container mx-auto px-4"}>
             <DataTable
-                value={employees}
+                value={employeesList}
+                // value={employees}
                 sortField="name"
                 sortOrder={-1}
                 tableStyle={{ minWidth: '30rem' }}
@@ -64,8 +76,16 @@ const Table = () => {
                 header={header}>
                 <Column field="firstName" header="First Name" sortable style={{ width: '20%' }}></Column>
                 <Column field="lastName" header="Last Name" sortable style={{ width: '20%' }}></Column>
-                <Column field="address" header="Address" sortable style={{ width: '20%' }}></Column>
-                <Column body={actionBodyTemplate} exportable={false} style={{ minWidth: '5rem' }}></Column>
+                <Column field="startDate" header="Start date" sortable style={{ width: '20%' }}></Column>
+                <Column field="contractType" header="Contract Type" sortable style={{ width: '20%' }}></Column>
+                <Column field="department" header="Department" sortable style={{ width: '20%' }}></Column>
+                <Column field="birthDate" header="Date of Birth" sortable style={{ width: '20%' }}></Column>
+                <Column field="street" header="Street" sortable style={{ width: '20%' }}></Column>
+                <Column field="city" header="City" sortable style={{ width: '20%' }}></Column>
+                <Column field="state" header="State" sortable style={{ width: '20%' }}></Column>
+                <Column field="zipCode" header="Zip Code" sortable style={{ width: '20%' }}></Column>
+                {/*<Column field="address" header="Address" sortable style={{ width: '20%' }}></Column>*/}
+                {/*<Column body={actionBodyTemplate} exportable={false} style={{ minWidth: '5rem' }}></Column>*/}
             </DataTable>
         </div>
     )

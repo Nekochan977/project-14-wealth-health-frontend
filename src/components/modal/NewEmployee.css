@@ -13,7 +13,7 @@
     position: relative;
     border-radius: 50%;
     left: 37rem;
-    top: -2rem;
+    top: 0;
     font-size: 1.5rem;
     font-weight: 900;
 }
@@ -80,6 +80,10 @@ input, select {
 .button {
     position: relative;
     width: fit-content;
+}
+.save-button {
+    font-size: 2.2rem;
+    padding: 1.5rem
 }
 .color {
     font-family: 'Kodchasan', 'Roboto', sans-serif;
