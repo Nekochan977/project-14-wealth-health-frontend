@@ -7,31 +7,20 @@ import {EMPLOYEES} from "../Routes";
 
 
 const Home = () => {
-    // const [isShown, setIsShown] = useState(true)
-    const [isOpen, setIsOpen] = useState(false)
-
-    function open() {
-        setIsOpen((isOpen) => true)
-    }
-    function close() {
-        setIsOpen((isOpen)=>false)
-    }
+    const [showModal, setShowModal] = useState(false);
     return (
         <main className="main-container">
-            {isOpen === true ?
-                <Modal className={"form-container"}>
+            {showModal === true ?
+                <Modal className={"form-container"} onClose={() => setShowModal(false)}>
                     <h2 className={"form-title"}>Create Employee</h2>
-                    <Button className={"button right"} text={"X"} click={close}/>
                     <NewEmployee/>
                 </Modal>
                 :
                 <div className="button-container">
-                    <Button className={"button"} text={"Create new employee"} click={open}/>
+                    <Button className={"button"} text={"Create new employee"} click={() => setShowModal(true)}/>
                     <Link to={EMPLOYEES}>
                         <Button className={"button"} text={"View current employees"}/>
                     </Link>
-
-
                 </div>
             }
         </main>
