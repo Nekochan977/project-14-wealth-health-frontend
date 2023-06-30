@@ -1,6 +1,6 @@
 import "./NewEmployee.css"
 import {states} from "../../utils/stateList";
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import Button from "../button/Button";
 import Calendar from "../calendar/Calendar";
 
@@ -17,6 +17,8 @@ const NewEmployee = () => {
     const [lastName, setLastname] = useState("")
     const [socialNumber, setSocialNumber] = useState("")
     const [contractType, setContractType] = useState("Full Time")
+    const [birthDate, setBirthDate] = useState("")
+    const [startDate, setStartDate] = useState("")
 
 
     //changing content
@@ -24,7 +26,6 @@ const NewEmployee = () => {
     const onLastNameChanged = (e) => setLastname(e.target.value)
     const onStateChanged = (e) => setState(e.target.value)
     const onSocialNumberChanged = (e) => setSocialNumber(e.target.value)
-
     const onContractChanged = (e) => setContractType(e.target.value)
 
 
@@ -33,12 +34,24 @@ const NewEmployee = () => {
         // e.preventDefault()
        if(firstName && lastName && state) {
            dispatch(
-                employeeAdded({firstName, lastName, state, socialNumber, contractType})
+                employeeAdded({firstName, lastName, birthDate, startDate, state, socialNumber, contractType})
            )
        }
     }
 
     const canSave = Boolean(firstName) && Boolean(lastName) && Boolean(state) && Boolean(socialNumber) && Boolean(contractType)
+
+    //Test retrieve data
+
+
+    const handleClickBirthdate = (cnt) => {
+        setBirthDate(cnt)
+    }
+    const handleClickStartDate = (cnt) => {
+        setStartDate(cnt)
+    }
+
+
 
 
     return(
@@ -56,7 +69,7 @@ const NewEmployee = () => {
             {/*Test on Calendar*/}
             <div className={"row"}>
                 <div className={"input-container"}>
-                    <Calendar text={"Date of Birth"} className={"color"}/>
+                    <Calendar ID={'birthDate'} handleMyClick={handleClickBirthdate} text={"Date of Birth"} className={"color"}/>
                 </div>
                 <div className={"input-container"}>
                     <label>Social Security Number</label>
@@ -65,7 +78,7 @@ const NewEmployee = () => {
             </div>
             <div className={"row"}>
                 <div className={"input-container"}>
-                    <Calendar text={"Start Date"} className={"color"} />
+                    <Calendar ID={"startDate"} handleMyClick={handleClickStartDate} text={"Start Date"} className={"color"} />
                 </div>
                 <div className={"input-container"}>
                     <label>Contract Type</label>

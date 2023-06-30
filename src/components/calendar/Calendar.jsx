@@ -6,7 +6,7 @@ import "./Calendar.css"
 const weekDays = ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun" ]
 
 
-const Calendar = ({className, text}) => {
+const Calendar = ({className, text, handleMyClick, ID}) => {
     const [openCalendar, setOpenCalendar] = useState(false)
     const [currentDate, setCurrentDate] = useState(new Date())
 
@@ -28,6 +28,7 @@ const Calendar = ({className, text}) => {
 
     const handleClickDate = ( index) => {
         const date = setDate(currentDate, index)
+        handleMyClick&& handleMyClick(format(date, "PPP"))
         setCurrentDate(date)
         setOpenCalendar(false)
     }
@@ -36,7 +37,7 @@ const Calendar = ({className, text}) => {
         <div>
             <div className={"calendar-block"}>
                 <label>{text}</label>
-                <input className={"calendar-input"} onClick={showCalendar} onChange={()=>{}} value={format(currentDate, "PPP")}/>
+                <input id={ID} className={"calendar-input"} onClick={showCalendar} onChange={()=>{}} value={format(currentDate, "PPP")}/>
             </div>
             {openCalendar === true ?
                 <div className={className}>
