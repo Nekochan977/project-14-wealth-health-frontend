@@ -2,7 +2,8 @@ import "./NewEmployee.css"
 import {states} from "../../utils/stateList";
 import {useEffect, useRef, useState} from "react";
 import Button from "../button/Button";
-import Calendar from "../calendar/Calendar";
+// import Calendar from "../calendar/Calendar";
+import {Calendar} from "react-calendar-component-nekochan"
 
 //redux
 import {employeeAdded} from "../../redux/employeeSlice";
