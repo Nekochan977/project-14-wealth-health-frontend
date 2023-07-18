@@ -1,4 +1,5 @@
 import Button from "../button/Button";
+import PropTypes from 'prop-types';
 
 const Modal = ({className, children, onClose}) => {
 
@@ -12,3 +13,9 @@ const Modal = ({className, children, onClose}) => {
 }
 
 export default Modal
+
+Modal.propTypes = {
+    className: PropTypes.string,
+    children: PropTypes.object,
+    onClose: PropTypes.func
+}
