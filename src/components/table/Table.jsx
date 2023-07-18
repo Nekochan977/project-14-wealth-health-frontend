@@ -80,7 +80,7 @@ const Table = () => {
                 <Column field="contractType" header="Contract Type" sortable style={{ width: '20%' }}></Column>
                 <Column field="department" header="Department" sortable style={{ width: '20%' }}></Column>
                 <Column field="birthDate" header="Date of Birth" sortable style={{ width: '20%' }}></Column>
-                <Column field="street" header="Street" sortable style={{ width: '20%' }}></Column>
+                <Column field="streetName" header="Street" sortable style={{ width: '20%' }}></Column>
                 <Column field="city" header="City" sortable style={{ width: '20%' }}></Column>
                 <Column field="state" header="State" sortable style={{ width: '20%' }}></Column>
                 <Column field="zipCode" header="Zip Code" sortable style={{ width: '20%' }}></Column>

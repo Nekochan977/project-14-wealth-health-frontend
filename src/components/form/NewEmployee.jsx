@@ -1,18 +1,17 @@
 import "./NewEmployee.css"
 import {states} from "../../utils/stateList";
-import {useEffect, useRef, useState} from "react";
+import {useState} from "react";
 import Button from "../button/Button";
-// import Calendar from "../calendar/Calendar";
 import {Calendar} from "react-calendar-component-nekochan"
 
 //redux
 import {employeeAdded} from "../../redux/employeeSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 
 const NewEmployee = () => {
     const dispatch = useDispatch()
-
+    //states
     const [state, setState] = useState("Alabama")
     const [firstName, setFirstname] = useState("")
     const [lastName, setLastname] = useState("")
@@ -20,6 +19,10 @@ const NewEmployee = () => {
     const [contractType, setContractType] = useState("Full Time")
     const [birthDate, setBirthDate] = useState("")
     const [startDate, setStartDate] = useState("")
+    const [streetName, setStreetName] = useState("")
+    const [zipCode, setZipCode] = useState("")
+    const [city, setCity] = useState("")
+    const [department, setDepartment] = useState("Sales")
 
 
     //changing content
@@ -28,22 +31,10 @@ const NewEmployee = () => {
     const onStateChanged = (e) => setState(e.target.value)
     const onSocialNumberChanged = (e) => setSocialNumber(e.target.value)
     const onContractChanged = (e) => setContractType(e.target.value)
-
-
-
-    const saveNewEmployee = () => {
-        // e.preventDefault()
-       if(firstName && lastName && state) {
-           dispatch(
-                employeeAdded({firstName, lastName, birthDate, startDate, state, socialNumber, contractType})
-           )
-       }
-    }
-
-    const canSave = Boolean(firstName) && Boolean(lastName) && Boolean(state) && Boolean(socialNumber) && Boolean(contractType)
-
-    //Test retrieve data
-
+    const onStreetNameChange = (e) => setStreetName(e.target.value)
+    const onCityChange = (e) => setCity(e.target.value)
+    const onZipCodeChange = (e) => setZipCode(e.target.value)
+    const onDepartmentChanged = (e) => setDepartment(e.target.value)
 
     const handleClickBirthdate = (cnt) => {
         setBirthDate(cnt)
@@ -53,6 +44,13 @@ const NewEmployee = () => {
     }
 
 
+    const saveNewEmployee = () => {
+       if(firstName && lastName && state && streetName && city && state && socialNumber && contractType) {
+           dispatch(
+                employeeAdded({firstName, lastName, birthDate, startDate, streetName, city, zipCode, state, socialNumber, contractType, department})
+           )
+       }
+    }
 
 
     return(
@@ -67,7 +65,6 @@ const NewEmployee = () => {
                     <input name={"last-name"} id={"last-name"} type={"text"} onChange={onLastNameChanged}/>
                 </div>
             </div>
-            {/*Test on Calendar*/}
             <div className={"row"}>
                 <div className={"input-container"}>
                     <Calendar ID={'birthDate'} handleMyClick={handleClickBirthdate} text={"Date of Birth"} className={"color"}/>
@@ -95,23 +92,22 @@ const NewEmployee = () => {
                     <div className={"row"}>
                         <div className={"input-container"}>
                             <label>Street</label>
-                            <input name={"street"} id={"street"} type={"text"}/>
+                            <input name={"street"} id={"street"} type={"text"} onChange={onStreetNameChange}/>
                         </div>
                         <div className={"input-container"}>
                             <label>City</label>
-                            <input name={"city"} id={"city"} type={"text"}/>
+                            <input name={"city"} id={"city"} type={"text"} onChange={onCityChange}/>
                         </div>
                     </div>
                     <div className={"row"}>
                         <div className={"input-container"}>
                             <label>Zip Code</label>
-                            <input name={"zip-code"} id={"zip-code"} type={"text"}/>
+                            <input name={"zip-code"} id={"zip-code"} type={"text"} onChange={onZipCodeChange}/>
                         </div>
                         <div className={"input-container"}>
                             <label>State</label>
                             <select value={state} name={"state"} id={"state"} onChange={onStateChanged}>
                                 {states.map((state)=>(
-                                    // (console.log(state))
                                     <option key={state.abbreviation} value={state.name}>{state.name}</option>
                                 ))}
                             </select>
@@ -122,16 +118,16 @@ const NewEmployee = () => {
             <div className={"row"}>
                 <div className={"input-container left"}>
                     <label>Department</label>
-                    <select name={"department"} id={"department"}>
-                        <option value={"full-time"}>Sales</option>
-                        <option value={"part-time"}>Marketing</option>
-                        <option value={"part-time"}>Human Resources</option>
-                        <option value={"part-time"}>Engineering</option>
-                        <option value={"part-time"}>Legal</option>
+                    <select name={"department"} id={"department"} onChange={onDepartmentChanged}>
+                        <option value={"sales"}>Sales</option>
+                        <option value={"marketing"}>Marketing</option>
+                        <option value={"human-resources"}>Human Resources</option>
+                        <option value={"engineering"}>Engineering</option>
+                        <option value={"legal"}>Legal</option>
                     </select>
                 </div>
             </div>
-            <Button className={"button save-button"} text={"Save"} click={saveNewEmployee} disabled={!canSave}/>
+            <Button className={"button save-button"} text={"Save"} click={saveNewEmployee} />
         </form>
     )
 }
