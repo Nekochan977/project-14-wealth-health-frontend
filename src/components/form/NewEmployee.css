@@ -89,3 +89,28 @@ input, select {
     font-family: 'Kodchasan', 'Roboto', sans-serif;
     color: rgba(37, 3, 244, 0.85);
 }
+
+@media screen and (max-width: 900px){
+    .form-container {
+        width: 69rem;
+    }
+    .right{
+        left: 31rem;
+        font-size: 1rem;
+    }
+}
+@media screen and (max-width: 480px) {
+    .form-container{
+        width: 30rem;
+    }
+    .right{
+        left: 12rem;
+        font-size: 1rem;
+    }
+    .row{
+        flex-wrap: wrap;
+        width: unset;
+    }
+
+}
+
