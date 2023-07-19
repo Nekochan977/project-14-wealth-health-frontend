@@ -59,6 +59,25 @@ input, select {
     font-family: 'Kodchasan', 'Roboto', sans-serif;
     width: 23rem;
 }
+.select{
+    border: 1px solid rgba(37, 3, 244, 0.25) !important;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 20px !important;
+    padding: unset !important;
+    color: #2503F4 !important;
+    --highlight-text-color: #2503F4 !important ;
+    -webkit-text-fill-color: #2503F4;
+
+    font-family: 'Kodchasan', 'Roboto', sans-serif;
+    width: 23rem;
+
+}
+.select::before ::after{
+    content:"";
+    color: #2503F4 !important;
+    -webkit-text-fill-color: #2503F4;
+    --highlight-text-color: #2503F4 !important ;
+}
 .address-container{
     width: inherit;
     margin: 1rem 4rem;

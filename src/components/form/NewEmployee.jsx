@@ -1,8 +1,11 @@
 import "./NewEmployee.css"
-import {states} from "../../utils/stateList";
+import {states, departments, contractTypes} from "../../utils/options";
 import {useState} from "react";
 import Button from "../button/Button";
 import {Calendar} from "react-calendar-component-nekochan"
+
+import { Dropdown } from 'primereact/dropdown';
+
 
 //redux
 import {employeeAdded} from "../../redux/employeeSlice";
@@ -11,8 +14,10 @@ import { useDispatch } from "react-redux";
 
 const NewEmployee = ({closeModal}) => {
     const dispatch = useDispatch()
+    // console.log(contractTypes)
+    console.log(states)
     //states
-    const [state, setState] = useState("Alabama")
+    const [state, setState] = useState(null)
     const [firstName, setFirstname] = useState("")
     const [lastName, setLastname] = useState("")
     const [socialNumber, setSocialNumber] = useState("")
@@ -82,10 +87,14 @@ const NewEmployee = ({closeModal}) => {
                 </div>
                 <div className={"input-container"}>
                     <label>Contract Type</label>
-                    <select name={"contract-type"} id={"contract-type"} onChange={onContractChanged}>
-                        <option value={"full-time"}>Full Time</option>
-                        <option value={"part-time"}>Part Time</option>
-                    </select>
+                    <Dropdown
+                        value={contractType}
+                        onChange={onContractChanged}
+                        options={contractTypes}
+                        optionLabel="label"
+                        placeholder="Select a contract type"
+                        className="select"
+                    />
                 </div>
             </div>
             <div className={"address-container"}>
@@ -108,11 +117,14 @@ const NewEmployee = ({closeModal}) => {
                         </div>
                         <div className={"input-container"}>
                             <label>State</label>
-                            <select value={state} name={"state"} id={"state"} onChange={onStateChanged}>
-                                {states.map((state)=>(
-                                    <option key={state.abbreviation} value={state.name}>{state.name}</option>
-                                ))}
-                            </select>
+                            <Dropdown
+                                value={state}
+                                onChange={onStateChanged}
+                                options={states}
+                                optionLabel="name"
+                                placeholder="Select a State"
+                                className="select"
+                            />
                         </div>
                     </div>
                 </div>
@@ -120,13 +132,14 @@ const NewEmployee = ({closeModal}) => {
             <div className={"row"}>
                 <div className={"input-container left"}>
                     <label>Department</label>
-                    <select name={"department"} id={"department"} onChange={onDepartmentChanged}>
-                        <option value={"sales"}>Sales</option>
-                        <option value={"marketing"}>Marketing</option>
-                        <option value={"human-resources"}>Human Resources</option>
-                        <option value={"engineering"}>Engineering</option>
-                        <option value={"legal"}>Legal</option>
-                    </select>
+                    <Dropdown
+                        value={department}
+                        onChange={onDepartmentChanged}
+                        options={departments}
+                        optionLabel="label"
+                        placeholder="Select a department"
+                        className="select"
+                    />
                 </div>
             </div>
             <Button className={"button save-button"} text={"Save"} click={saveNewEmployee} />
