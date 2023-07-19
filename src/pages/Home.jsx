@@ -13,7 +13,7 @@ const Home = () => {
             {showModal === true ?
                 <Modal className={"form-container"} onClose={() => setShowModal(false)}>
                     <h2 className={"form-title"}>Create Employee</h2>
-                    <NewEmployee/>
+                    <NewEmployee closeModal={() => setShowModal(false)}/>
                 </Modal>
                 :
                 <div className="button-container">

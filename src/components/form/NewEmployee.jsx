@@ -9,7 +9,7 @@ import {employeeAdded} from "../../redux/employeeSlice";
 import { useDispatch } from "react-redux";
 
 
-const NewEmployee = () => {
+const NewEmployee = ({closeModal}) => {
     const dispatch = useDispatch()
     //states
     const [state, setState] = useState("Alabama")
@@ -23,6 +23,7 @@ const NewEmployee = () => {
     const [zipCode, setZipCode] = useState("")
     const [city, setCity] = useState("")
     const [department, setDepartment] = useState("Sales")
+
 
 
     //changing content
@@ -49,6 +50,7 @@ const NewEmployee = () => {
            dispatch(
                 employeeAdded({firstName, lastName, birthDate, startDate, streetName, city, zipCode, state, socialNumber, contractType, department})
            )
+           closeModal()
        }
     }
 
