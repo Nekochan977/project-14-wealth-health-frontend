@@ -16,6 +16,6 @@ export default Modal
 
 Modal.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.object,
+    children: PropTypes.array,
     onClose: PropTypes.func
 }
