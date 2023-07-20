@@ -7,3 +7,6 @@
 .main-container{
   margin:  10rem auto;
 }
+a{
+  text-decoration: none;
+}
