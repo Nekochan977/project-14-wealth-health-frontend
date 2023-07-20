@@ -29,3 +29,17 @@
             rgba(228, 9, 247, 0.47) 32.16%,
             rgba(255, 255, 255, 0) 99.02%);
 }
+
+
+/*media queries*/
+@media screen and (max-width: 900px){
+    .button {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .button {
+        font-size: 1.5rem;
+    }
+}
