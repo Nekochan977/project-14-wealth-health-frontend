@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 const Modal = ({className, children, onClose}) => {
 
     return (
-        <section className={className}>
+        <div className={className}>
             <Button className={"button right"} text={"X"} click={onClose}/>
             {children}
-        </section>
+        </div>
     )
 
 }
@@ -16,6 +16,6 @@ export default Modal
 
 Modal.propTypes = {
     className: PropTypes.string,
-    children: PropTypes.array,
+    children: PropTypes.any,
     onClose: PropTypes.func
 }
