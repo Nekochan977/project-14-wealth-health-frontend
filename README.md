@@ -4,7 +4,7 @@
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
 
-# HRet
+# HRnet
 This is the 14th and last project in the JavaScript React Application Developer of Openclassrooms curriculum
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
 
