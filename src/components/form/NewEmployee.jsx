@@ -70,11 +70,11 @@ const NewEmployee = ({closeModal}) => {
             <form className={"form"} onSubmit={e=>{e.preventDefault()}}>
             <div className={"row"}>
                 <div className={"input-container"}>
-                    <label>First Name</label>
+                    <label htmlFor={"first-name"}>First Name</label>
                     <input name={"first-name"} id={"first-name"} type={"text"} onChange={onFirstNameChanged}/>
                 </div>
                 <div className={"input-container"}>
-                    <label>Last Name</label>
+                    <label htmlFor={"last-name"}>Last Name</label>
                     <input name={"last-name"} id={"last-name"} type={"text"} onChange={onLastNameChanged}/>
                 </div>
             </div>
@@ -83,7 +83,7 @@ const NewEmployee = ({closeModal}) => {
                     <Calendar ID={'birthDate'} handleMyClick={handleClickBirthdate} text={"Date of Birth"} className={"color"}/>
                 </div>
                 <div className={"input-container"}>
-                    <label>Social Security Number</label>
+                    <label htmlFor={"SS-nbr"}>Social Security Number</label>
                     <input name={"SS-nbr"} id={"SS-nbr"} type={"text"} onChange={onSocialNumberChanged}/>
                 </div>
             </div>
@@ -92,8 +92,9 @@ const NewEmployee = ({closeModal}) => {
                     <Calendar ID={"startDate"} handleMyClick={handleClickStartDate} text={"Start Date"} className={"color"} />
                 </div>
                 <div className={"input-container"}>
-                    <label>Contract Type</label>
+                    <label htmlFor={"contractType"}>Contract Type</label>
                     <Dropdown
+                        inputId={"contractType"}
                         value={contractType}
                         onChange={onContractChanged}
                         options={contractTypes}
@@ -108,21 +109,21 @@ const NewEmployee = ({closeModal}) => {
                 <div className={"address-block"}>
                     <div className={"row"}>
                         <div className={"input-container"}>
-                            <label>Street</label>
+                            <label htmlFor={"street"}>Street</label>
                             <input name={"street"} id={"street"} type={"text"} onChange={onStreetNameChange}/>
                         </div>
                         <div className={"input-container"}>
-                            <label>City</label>
+                            <label htmlFor={"city"}>City</label>
                             <input name={"city"} id={"city"} type={"text"} onChange={onCityChange}/>
                         </div>
                     </div>
                     <div className={"row"}>
                         <div className={"input-container"}>
-                            <label>Zip Code</label>
+                            <label htmlFor={"zip-code"}>Zip Code</label>
                             <input name={"zip-code"} id={"zip-code"} type={"text"} onChange={onZipCodeChange}/>
                         </div>
                         <div className={"input-container"}>
-                            <label>State</label>
+                            <label htmlFor={"state"}>State</label>
                             <Dropdown
                                 value={state}
                                 onChange={onStateChanged}
@@ -130,6 +131,7 @@ const NewEmployee = ({closeModal}) => {
                                 optionLabel="name"
                                 placeholder="Select a State"
                                 className="select"
+                                inputId="state"
                             />
                         </div>
                     </div>
@@ -137,8 +139,9 @@ const NewEmployee = ({closeModal}) => {
             </div>
             <div className={"row"}>
                 <div className={"input-container left"}>
-                    <label>Department</label>
+                    <label htmlFor={"department"}>Department</label>
                     <Dropdown
+                        inputId={"department"}
                         value={department}
                         onChange={onDepartmentChanged}
                         options={departments}
