@@ -24,3 +24,9 @@
 a{
   text-decoration: none;
 }
+.homeLink {
+  display: flex;
+  justify-content: center;
+  font-size: 25px;
+  margin-top: 1rem;
+}
